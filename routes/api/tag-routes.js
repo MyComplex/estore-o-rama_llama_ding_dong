@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
       },
     ],
   })
-  .then((tags) => {
-    res.json(tags);
-  });
+    .then((tags) => {
+      res.json(tags);
+    });
 });
 
 router.get('/:id', (req, res) => {
@@ -39,6 +39,11 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
+  Tag.create(req.body)
+    .then((newTag) => {
+      res.json(newTag);
+    })
+    .catch((error) => console.log(error));
 });
 
 router.put('/:id', (req, res) => {
