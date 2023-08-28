@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { NULL } = require('mysql2/lib/constants/types');
 const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
@@ -13,14 +14,25 @@ router.get('/', (req, res) => {
       },
     ],
   })
-  .then((categories) => {
-    res.json(categories);
-  });
+    .then((categories) => {
+      res.json(categories);
+    });
 });
 
 router.get('/:id', (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  Category.findByPk(req.params.id, {
+    include: [
+      {
+        model: Product,
+      },
+    ],
+  })
+    .then((category) => {
+      res.json(category);
+    })
+    .catch((error) => console.log(error));
 });
 
 router.post('/', (req, res) => {
