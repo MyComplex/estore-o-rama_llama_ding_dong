@@ -48,10 +48,35 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
+  Tag.update(req.body, {
+    tag_name: req.body.tag_name,
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((tag) => {
+      if (!tag) {
+        return res.status(404).json({ message: 'Tag not found! Please try again.' })
+      }
+      res.json(tag);
+    })
+    .catch((error) => console.log(error));
 });
 
 router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
+  Tag.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(tag => {
+      if (!tag) {
+        return res.status(404).json({ message: 'Tag not found! Please try again.' })
+      }
+      res.json(tag);
+    })
+    .catch((error) => console.log(error));
 });
 
 module.exports = router;
