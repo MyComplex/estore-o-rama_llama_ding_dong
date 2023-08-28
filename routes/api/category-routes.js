@@ -29,7 +29,10 @@ router.get('/:id', (req, res) => {
       },
     ],
   })
-    .then((category) => {
+    .then(category => {
+      if (!category) {
+        return res.status(404).json({ message: 'Category not found! Please try again.' })
+      }
       res.json(category);
     })
     .catch((error) => console.log(error));
