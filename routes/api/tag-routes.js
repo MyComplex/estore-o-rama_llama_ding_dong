@@ -21,6 +21,20 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
+  Tag.findByPk(req.params.id, {
+    include: [
+      {
+        model: Product,
+      },
+    ],
+  })
+    .then(tag => {
+      if (!tag) {
+        return res.status(404).json({ message: 'Tag not found! Please try again.' })
+      }
+      res.json(tag);
+    })
+    .catch((error) => console.log(error));
 });
 
 router.post('/', (req, res) => {
