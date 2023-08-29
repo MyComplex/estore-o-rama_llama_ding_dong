@@ -14,7 +14,7 @@ The challenge is to build functional routes for the existing e-commerce back end
 - [Sample](#sample)
 - [Contributing](#contributing)
 - [Questions](#questions)
-- [License](#license)
+- [Credits](#credits)
 
 ## Installation
 
@@ -43,6 +43,6 @@ Feel free to fork this repository and create a Pull Request.
 
 If you have any questions, please feel free to reach out to me via [email](mailto:jo_nez@hotmail.com) or on [Github](https://github.com/MyComplex/).
 
-## License
+## Credits
 
-[MIT](./LICENSE) © MyComplex
+This project contains portions of code supplied by the edX bootcamp curriculum as "Starter Code", as well as various boiler-plate snippets from the utilized modules' documentation. All rights are reserved by the respective entities.
