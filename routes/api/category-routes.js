@@ -49,17 +49,20 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
-  Category.update(req.body, {
-    category_name: req.body.category_name,
-    where: {
-      id: req.params.id,
-    },
-  })
+  Category.findByPk(req.params.id)
     .then((category) => {
       if (!category) {
         return res.status(404).json({ message: 'Category not found! Please try again.' })
       }
-      res.json(category);
+      Category.update(req.body, {
+        category_name: req.body.category_name,
+        where: {
+          id: req.params.id,
+        },
+      })
+        .then(category => {
+          res.json(category);
+        })
     })
     .catch((error) => console.log(error));
 });
